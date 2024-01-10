@@ -1,0 +1,35 @@
+########################################################################
+#                                                                      #
+#                             GNUPLOT                                  #
+#                                                                      #
+########################################################################
+
+
+# 1D PLOT 
+
+set terminal postscript enhanced color
+set fit quiet
+set size 3.0/3.0, 5.0/4.0
+plot "ADER_LARE_1D_Output.dat" using 1:2:($1*0+0.01) title \
+'Numerical Solution' with circles linecolor rgb "#9400D3"  lw 0.5 \
+fill solid border lt 3,\
+"ADER_LARE_1D_Output.dat" using 1:3 title 'Exact solution' with lines \
+linecolor rgb "red"  lw 1
+set xr[-1:1]
+set yr[*:*]
+set style line 12 lc rgb '#808080' lt 0 lw 1
+set grid ls 12
+set style line 11 lc rgb '#808080' lt 1
+set border 3 ls 11
+set key box
+set key tmargin
+set key font ",12
+set key samplen 4  spacing 1.25
+set xlabel '{/:Bold x-space}' font ",18"
+set ylabel '{/:Bold q}' font ",18"
+set output "Figure_ADER_LARE_1D.eps"
+replot 
+set output
+set term x11
+ 
+ 

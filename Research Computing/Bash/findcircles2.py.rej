@@ -1,0 +1,70 @@
+*** /dev/null
+--- /dev/null
+***************
+*** 28
+- skip = 100
+--- 31 -----
++ skip = 50
+***************
+*** 85,86
+- r1 = (0.90*r)**2
+- r2 = (0.2*r)**2
+--- 88,89 -----
++ r1 = (0.8*r)**2
++ r2 = (0.1*r)**2
+***************
+*** 98,116
+- if(colour[1]-2*stdev[1]<0):
+-     s1=0
+- else:
+-     s1 = colour[1]-2*stdev[1]
+-     
+- if(colour[2]-2*stdev[2]<0):
+-     v1=0
+- else:
+-     v1 = colour[2]-2*stdev[2]
+- 
+- if(colour[1]+2*stdev[1]>255):
+-     s2=255
+- else:
+-     s2 = colour[1]+2*stdev[1]
+-     
+- if(colour[2]-2*stdev[2]>255):
+-     v2=255
+- else:
+-     v2 = colour[2]+2*stdev[2]
+--- 101,104 -----
++ s1 = max(colour[1]-2*stdev[1],0)
++ v1 = max(colour[2]-2*stdev[2],0)
++ s2 = min(colour[1]+2*stdev[1],255)
++ v2 = min(colour[2]+2*stdev[2],255)
+***************
+*** 162,169
+-     boxtmp_x1 = int(x-1.2*r)
+-     if boxtmp_x1<0: boxtmp_x1=0
+-     boxtmp_x2 = int(x+1.2*r)
+-     if boxtmp_x2>xmax: boxtmp_x2=xmax
+-     boxtmp_y1 = int(y-3*r)
+-     if boxtmp_y1<0: boxtmp_y1=0
+-     boxtmp_y2 = int(y+3*r)
+-     if boxtmp_y2>ymax: boxtmp_y2=ymax
+--- 150,153 -----
++     boxtmp_x1 = max(int(x-1.2*r),0)
++     boxtmp_x2 = min(int(x+1.2*r),xmax)
++     boxtmp_y1 = max(int(y-3*r),0)
++     boxtmp_y2 = min(int(y+3*r),ymax)
+***************
+*** 199,206
+-         box_x1 = int(x-1.1*r)
+-         if box_x1<0: box_x1=0
+-         box_x2 = int(x+1.1*r)
+-         if box_x2>xmaxtmp: box_x2=xmaxtmp
+-         box_y1 = int(y-1.1*r)
+-         if box_y1<0: box_y1=0
+-         box_y2 = int(y+1.1*r)
+-         if box_y2>ymaxtmp: box_y2=ymaxtmp
+--- 183,186 -----
++         box_x1 = max(int(x-1.1*r),0)
++         box_x2 = min(int(x+1.1*r),xmaxtmp)
++         box_y1 = max(int(y-1.1*r),0)
++         box_y2 = min(int(y+1.1*r),ymaxtmp)

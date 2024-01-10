@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "tuple": "cpp",
+        "array": "cpp",
+        "iosfwd": "cpp",
+        "functional": "cpp",
+        "numbers": "cpp",
+        "ostream": "cpp"
+    }
+}

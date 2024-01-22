@@ -1,9 +1,8 @@
 #include "eulerSolver1D_main.H"
 
-
 // Global Variables
 
-double x0 = 0, x1 = 1, T = 0.012, Gamma = 1.4;
+double x0 = 0, x1 = 1, T = 0.25, Gamma = 1.4;
 int nxCells = 1000;
 double dx = (x1 - x0)/nxCells;
 int nVar = 3;
@@ -17,7 +16,7 @@ int main()
     initializePhi(phi0);
     for (int i = 0; i != nxCells+2; i++)
     {
-        double x = x0 + (i-0.5)*dx;
+        double x = x0 + (i-0.5)*dx; 
         u0[i][0] = ((x < 0.5) ? 1 : 0.125);
         u0[i][1] = ((x < 0.5) ? 0 : 0);
         u0[i][2] = ((x < 0.5) ? 1 : 0.1);
@@ -31,7 +30,7 @@ int main()
         u1[i][2] = ((x < 0.5) ? 1000 : 0.01);
     }
 
-    solver_LevelSet2Var(u0, u1, phi0, "HLLC");
+    solver_LevelSet(u0, phi0, "HLLC");
     // solver_LevelSet(u1, phi0, "HLLC");
     return 0;
 }

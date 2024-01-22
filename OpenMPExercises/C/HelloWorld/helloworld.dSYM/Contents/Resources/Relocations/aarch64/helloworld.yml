@@ -1,0 +1,8 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/bb/bb/cam/code/cam/OpenMPExercises/C/HelloWorld/helloworld'
+relocations:
+  - { offsetInCU: 0x41, offset: 0x41, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003C2C, symSize: 0x38 }
+  - { offsetInCU: 0x5A, offset: 0x5A, size: 0x8, addend: 0x0, symName: _.omp_outlined._debug__, symObjAddr: 0x38, symBinAddr: 0x100003C64, symSize: 0xF8 }
+  - { offsetInCU: 0x88, offset: 0x88, size: 0x8, addend: 0x0, symName: _.omp_outlined., symObjAddr: 0x13C, symBinAddr: 0x100003D68, symSize: 0x2C }
+...

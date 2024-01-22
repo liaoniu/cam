@@ -3,14 +3,15 @@
 #
 # C compiler and options for Intel
 #
-CC=     icc -O3 -qopenmp -std=c99
-LIB=    -lm
+#CC=     icc -O3 -qopenmp -std=c99
+#LIB=    -lm
 
 #
 # C compiler and options for GNU 
 #
-#CC=     gcc -O3 -fopenmp 
-#LIB=	-lm
+CC=     gcc -O3 -fopenmp 
+LIB=	-lm
+CPPFLAGS = -L/opt/homebrew/opt/libomp/lib -I/opt/homebrew/opt/libomp/include -lomp
 
 #
 # Object files
@@ -30,10 +31,10 @@ OBJ=    main.o \
 # Compile
 #
 md:	$(OBJ)
-	$(CC) -o $@ $(OBJ) $(LIB)
+	$(CC)  -o $@ $(OBJ)  $(LIB) $(CPPFLAGS)
 
 .c.o:
-	$(CC) -c $<
+	$(CC) -c $< $(CPPFLAGS)
 
 #
 # Clean out object files and the executable.

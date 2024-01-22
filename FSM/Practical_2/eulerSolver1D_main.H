@@ -1,7 +1,7 @@
 #ifndef EULERSOLVER1D_H
 #define EULERSOLVER1D_H
 
-#include "D:\me\cam\FSM\Practical_2\eulerSolver1D.H"
+#include "eulerSolver1D.H"
 
 // Global Variables
 

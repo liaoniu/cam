@@ -1,4 +1,4 @@
-#include "D:\me\cam\FSM\Practical_3\Ghost.H"
+#include "Ghost.H"
 
 
 

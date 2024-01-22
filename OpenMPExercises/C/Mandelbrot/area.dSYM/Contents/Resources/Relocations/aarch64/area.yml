@@ -1,0 +1,9 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/bb/bb/cam/code/cam/OpenMPExercises/C/Mandelbrot/area'
+relocations:
+  - { offsetInCU: 0x26, offset: 0x26, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003A40, symSize: 0xF8 }
+  - { offsetInCU: 0x2FC, offset: 0x2FC, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x0, symBinAddr: 0x100003A40, symSize: 0xF8 }
+  - { offsetInCU: 0x378, offset: 0x378, size: 0x8, addend: 0x0, symName: _.omp_outlined._debug__, symObjAddr: 0xF8, symBinAddr: 0x100003B38, symSize: 0x294 }
+  - { offsetInCU: 0x473, offset: 0x473, size: 0x8, addend: 0x0, symName: _.omp_outlined., symObjAddr: 0x38C, symBinAddr: 0x100003DCC, symSize: 0x44 }
+...

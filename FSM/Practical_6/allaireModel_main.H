@@ -1,4 +1,4 @@
-#include "D:\me\cam\FSM\Practical_6\allaireModel.H"
+#include "allaireModel.H"
 
 
 
@@ -24,9 +24,9 @@ void solver(mat &u0, string method = "HLLC"){
 
     do
     // {
-    // for (int i = 0; i != 5; i++)
+    // for (int i = 0; i != 3; i++)
     {
-        dt = calc_dt_Allaire(u);
+        dt = min(calc_dt_Allaire(u), T-t);
         t += dt;
         //Transmissive BC
         transmissiveBC(u);
@@ -131,8 +131,8 @@ double computeSoundSpeed_Allaire(const arr &u_con)
     double zeta = a1/(Gamma1 - 1) + (1-a1)/(Gamma2 - 1);
     double e = E/rho - 0.5*v*v;
     double h = e + p/rho;
-    // return sqrt(h/zeta);
-    return sqrt(Gamma*(p + p_infty)/rho);
+    return sqrt(h/zeta);
+    // return sqrt(Gamma*(p + p_infty)/rho);
 }
 
 tuple<double, double> computeGammaPinfty_Alllaire(double a1)
@@ -340,6 +340,7 @@ void HLLCFlux(const arr& Ql, const arr& Qr, arr& Fhllc, double &S_star)
 		Fl_star[i] = Fl[i] + Sl*(Ql_star[i] - Ql[i]);
 		Fr_star[i] = Fr[i] + Sr*(Qr_star[i] - Qr[i]);
 	}
+    
 
 
 	if(S_star >= 0)

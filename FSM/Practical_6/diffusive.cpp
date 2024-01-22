@@ -1,4 +1,4 @@
-#include "D:\me\cam\FSM\Practical_6\allaireModel_main.H"
+#include "allaireModel_main.H"
 
 // Global Variables
 
@@ -36,6 +36,17 @@ int main()
         u0[i][3] = ((x < 0.7) ? 0 : 0);
         u0[i][4] = ((x < 0.7) ? 1e9 : 1e5);
     }
+
+    // for (int i = 0; i != nxCells+2; i++)
+    // {
+    //     double x = x0 + (i-0.5)*dx;
+    //     u0[i][0] = ((x < 0.7) ? 1e-6 : 1 - 1e-6);
+    //     u0[i][1] = ((x < 0.7) ? 50 : 50);
+    //     u0[i][2] = ((x < 0.7) ? 1000 : 1000);
+    //     u0[i][3] = ((x < 0.7) ? 0 : 0);
+    //     u0[i][4] = ((x < 0.7) ? 1e9 : 1e5);
+    // }
+
 
 
     // for (int i = 0; i != nxCells+2; i++)

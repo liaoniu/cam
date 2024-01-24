@@ -8,6 +8,16 @@ extern double dx, C;
 extern int nVar;
 
 
+void setrho(mat &u)
+{
+    for (int i = 0; i != nxCells+2; i++)
+    {
+        u[i][1] = 1000;
+        u[i][2] = 50;
+    }
+}
+
+
 // Main Solver
 
 void solver(mat &u0, string method)
@@ -25,9 +35,11 @@ void solver(mat &u0, string method)
         update(u, flux, dt, method);
         cout << t << endl;
     }while (t < T);
-
+    // u = conservedToPrimitive(u);
+    // setrho(u);
 
     u = conservedToPrimitive(u);
+
     ofstream output1("a1.dat");
     ofstream output2("rho1.dat");
     ofstream output3("rho2.dat");

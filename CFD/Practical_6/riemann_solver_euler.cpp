@@ -7,6 +7,22 @@ using namespace std;
 using mat = vector<vector<double>>;
 using myTuple = tuple<vector<double>, vector<double>, vector<double>>;
 
+void storeData(mat &u, int nxCells, double x0, double dx, double nVar)
+{
+    ofstream output("u.dat");
+    for (int i = 1; i != nxCells + 1; i++)
+    {
+        double x = x0 + (i-0.5)*dx;
+        output << x << " ";
+        for (int var = 0; var != nVar; var++)
+        {
+            output << u[i][var] << " ";
+        }
+        output << endl;
+    }
+    output.close();
+}
+
 tuple<double, double, double> indi_primitiveToConserved(double rho, double v, double p, double gamma){
     double rhoV = rho*v;
     double epsilon = p/(gamma - 1)/rho;
@@ -285,6 +301,8 @@ void solver(mat u0, double T, double x0, double x1, int nCells = 100, double gam
     tie(rho, rhov, E) = primitiveToConserved(rho, v, p, gamma);
 
     do{
+    // for (int i = 0; i != 1; i++)
+    // {
         dt = calc_dt(rho, rhov, E, gamma, dx);
         t += dt;
         rho[0] = rho[1];
@@ -306,21 +324,19 @@ void solver(mat u0, double T, double x0, double x1, int nCells = 100, double gam
         rhov = rhov_new;
         E = E_new;
         cout << t << endl;
+    // }
     }while(t<T);
 
     tie(rho, v, p) = conservedToPrimitive(rho, rhov, E, gamma);
-    ofstream output1("rho.dat");
-    ofstream output2("v.dat");
-    ofstream output3("p.dat");
+    ofstream output1("u_test.dat");
+    
     for (int i = 1; i != nCells + 1; i++){
         double x = x0 + (i-0.5)*dx;
-        output1 << x << " " << rho[i] << endl;
-        output2 << x << " " << v[i] << endl;
-        output3 << x << " " << p[i] << endl;
+        output1 << x << " " << rho[i] << " " << v[i] << " " << p[i] << endl;
+        
     }
     output1.close();
-    output2.close();
-    output3.close();
+
 
 
 }
@@ -333,7 +349,7 @@ void solver(mat u0, double T, double x0, double x1, int nCells = 100, double gam
 int main()
 {
     double x0 = 0, x1 = 1;
-    int nCells = 1000;
+    int nCells = 100;
     double dx = (x1 - x0)/nCells;
     double gamma = 1.4;
     vector<double> rho, v, p;
@@ -346,6 +362,13 @@ int main()
         v[i] = ((x < 0.5) ? 0 : 0);
         p[i] = ((x < 0.5) ? 1 : 0.1);
     }
+    // for (int i = 0; i != rho.size(); i++){
+    //     double x = x0 + (i-0.5)*dx;
+    //     rho[i] = ((x < 0.5) ? 0.392333 : 0.125);
+    //     v[i] = ((x < 0.5) ? 0.982022 : 0);
+    //     p[i] = ((x < 0.5) ? 0.336438 : 0.1);
+    // }
+
     double T = 0.25;
     mat u0;
     u0.push_back(rho);

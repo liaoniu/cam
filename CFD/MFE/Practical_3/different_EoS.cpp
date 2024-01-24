@@ -12,7 +12,7 @@ array<double, 3> indi_primitiveToConserved(array<double, 3> &u_pri, double &gamm
 array<double, 3> indi_conservedToPrimitive(array<double, 3> &u_con, double &gamma);
 mat conservedToPrimitive(mat &u, double &gamma);
 mat primitiveToConserved(mat &u, double &gamma);
-double cs(double &gamma, double &p, double &rho, double rho_infty, string EoS);
+double cs(double &gamma, double &p, double &rho, double &p_infty, string EoS);
 double calc_dt(mat &u_con, double &gamma, double &dx, double &dy);
 array<double, 3> f(array<double, 3> &u, double &gamma);
 double zeta(double delta_minus, double delta_plus, string limiter);
@@ -121,7 +121,7 @@ mat primitiveToConserved(mat &u, double &gamma, string EoS="ideal_gas"){
     return u;
 }
 
-double cs(double &gamma, double &p, double &rho, string EoS="ideal_gas"){
+double cs(double &gamma, double &p, double &rho, double &p_infty, string EoS="ideal_gas"){
     if (EoS == "ideal_gas"){
         return sqrt(gamma*p/rho);
     }
